@@ -30,14 +30,16 @@ export default {
   methods: {
     login() {
       // location.href='/#/home'
-      // this.$router.push('/home')
       this.$refs.loginformref.validate(async valid => {
         if (valid) {
-          var { data: dt } = await this.$http.post('/login', {username:this.loginform.username,password:this.loginform.password})
-          if(dt.meta.status===400) return this.$message.error(dt.meta.msg);
-          console.log(dt)
-          window.sessionStorage.setItem('token',dt.data.token)
-          location.href = '/#/home'
+          var { data: dt } = await this.$http.post('/login', {
+            username: this.loginform.username,
+            password: this.loginform.password
+          })
+          if (dt.meta.status === 400) return this.$message.error(dt.meta.msg)
+          window.sessionStorage.setItem('token', dt.data.token)
+          // location.href = '/#/home'
+          this.$router.push('/home')
         }
       })
     },
