@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-// import  './assets/css/globle.css'
+import  './assets/css/globle.css'
 
 // 加载图标库
 import './assets/fonts/iconfont.css'

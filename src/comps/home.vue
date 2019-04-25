@@ -1,33 +1,19 @@
 <template>
+<el-container>
+  <el-header>
+    <img src="../assets/img/heima.png" alt>
+    <span style>电商后台管理系统</span>
+    <el-button type="info" @click="logout">退出</el-button>
+  </el-header>
   <el-container>
-    <el-header>
-      <img src="../assets/img/heima.png" alt>
-      <span style>电商后台管理系统</span>
-      <el-button type="info" @click="logout">退出</el-button>
-    </el-header>
-    <el-container>
-      <el-aside :width="showbar?'200px':'65px'">
-        <div class="showbar" @click="showbar=!showbar">|||</div>
-        <el-menu
-          background-color="#333744"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-          :collapse="!showbar"
-          :unique-opened="true"
-          :collapse-transition="false"
-          :width="showbar?'200px':'65px'"
-          :router="true"
-        >
-          <el-submenu
-            :index="item.path"
-            :style="{width:showbar?'200px':'65px'}"
-            v-for="(item,index) in menulist"
-            :key="item.id"
-          >
-            <template slot="title">
+    <el-aside :width="showbar?'200px':'65px'">
+      <div class="showbar" @click="showbar=!showbar">|||</div>
+      <el-menu background-color="#333744" text-color="#fff" active-text-color="#409eff" :collapse="!showbar" :unique-opened="true" :collapse-transition="false" :width="showbar?'200px':'65px'" :router="true">
+        <el-submenu :index="item.path" :style="{width:showbar?'200px':'65px'}" v-for="(item,index) in menulist" :key="item.id">
+          <template slot="title">
               <i :class="'iconfont icon-'+menuicon[index]"></i>
               <span style="margin-left:10px">{{item.authName}}</span>
-            </template>
+</template>
             <el-menu-item-group v-for="item1 in item.children" :key="item1.id">
               <el-menu-item :index="item1.path">
                 <i class="el-icon-menu"></i>
@@ -37,7 +23,7 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main>
+      <el-main >
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -57,20 +43,22 @@ export default {
   },
   methods: {
     logout() {
+      
       this.$confirm('此操作将退出登录, 是否继续?', '提示', {
-        confirmButtonText: '退出',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
+          confirmButtonText: '退出',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
         .then(() => {
           this.$router.push('/login')
           window.sessionStorage.removeItem('token')
         })
-        .catch(() => {
-        })
+        .catch(() => {})
     },
     async gethomelist() {
-      var { data: dt } = await this.$http.get('/menus')
+      var {
+        data: dt
+      } = await this.$http.get('/menus')
       this.menulist = dt.data
     }
   }
@@ -89,6 +77,7 @@ export default {
       height: 50px;
       margin-right: 10px;
       user-select: none;
+      
     }
     span {
       font-size: 22px;
@@ -118,6 +107,7 @@ export default {
   }
   .el-main {
     height: 100%;
+    background-color: #eaedf1;
   }
 }
 </style>
