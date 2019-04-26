@@ -33,7 +33,7 @@
             <el-switch v-model="xxx.row.mg_state"></el-switch>
           </span>
         </el-table-column>
-        <el-table-column prop="id" label="操作" width="300">
+        <el-table-column label="操作" width="300">
           <template slot-scope="aa">
             <el-tooltip class="item" effect="dark" content="编辑" placement="top" :enterable="false">
               <el-button
@@ -252,10 +252,5 @@ export default {
 }
 </script>
 <style lang="less">
-.box-card,
-.el-table,
-.el-pagination {
-  margin-top: 15px;
-  font-size: 12px;
-}
+
 </style>
